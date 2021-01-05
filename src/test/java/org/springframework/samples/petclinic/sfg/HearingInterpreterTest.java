@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -11,6 +12,8 @@ import static org.junit.Assert.*;
 
 // TODO 144. JUnit 4 Laurel Test
 
+
+@ActiveProfiles("base-test")  //TODO 152
 //tells the test that we want to run with the springrunner which brings up the spring context.
 @RunWith(SpringRunner.class)  // Spring Framework & not Boot
 //spring looks at these two config classes

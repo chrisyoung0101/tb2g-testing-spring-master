@@ -2,6 +2,8 @@ package org.springframework.samples.petclinic.sfg;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 //TODO : 146 Assignment Review
@@ -15,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 //We autowired the HearingInterpreter into our class and did an assertion on whatIheard()
 //   and verified that it did get "Yanny" back.
 
+@Profile("base-test")  //TODO 152
 @Configuration
 public class YannyConfig {
 

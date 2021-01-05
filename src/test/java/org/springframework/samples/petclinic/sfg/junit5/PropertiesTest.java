@@ -4,23 +4,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.samples.petclinic.sfg.HearingInterpreter;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//TODO : 151. Using Component Scans
+//TODO 153
 
-//Note : because LaurelWordProducer has @Primary, this is the one that will
-//  get brought into our test context
-
-@ActiveProfiles("component-scan") //TODO 152
-@SpringJUnitConfig(classes = HearingInterpreterComponentScanTest.TestConfig.class)
-class HearingInterpreterComponentScanTest {
-
-    @Profile("component-scan") //TODO 152
+@TestPropertySource("classpath:yanny.properties")
+@ActiveProfiles("externalized")
+@SpringJUnitConfig(classes = PropertiesTest.TestConfig.class)
+public class PropertiesTest {
     @Configuration
     //tells this test to use this inner class to go out and do a component scan
     //  and pick up the spring framework annotations we added to the classes
@@ -33,12 +29,11 @@ class HearingInterpreterComponentScanTest {
     HearingInterpreter hearingInterpreter;
 
 
-        @Test
-        void whatIheard() {
-            String word = hearingInterpreter.whatIheard();
-
-            assertEquals("Laurel", word);
-        }
-
+    @Test
+    void whatIheard() {
+        String word = hearingInterpreter.whatIheard();
+        //funky spelling to insure that YaNNy value is coming from yanny.properties
+        assertEquals("YaNNy", word);
+    }
 
 }
